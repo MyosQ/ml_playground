@@ -75,3 +75,6 @@ corr_matrix["median_house_value"].sort_values(ascending=False)
 from pandas.plotting import scatter_matrix
 attributes = ["median_house_value", "median_income", "total_rooms", "housing_median_age"]
 scatter_matrix(housing[attributes], figsize=(12, 8))
+
+housing = strat_train_set.drop("median_house_value", axis=1)
+housing_labels = strat_train_set["median_house_value"].copy()
