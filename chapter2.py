@@ -78,3 +78,8 @@ scatter_matrix(housing[attributes], figsize=(12, 8))
 
 housing = strat_train_set.drop("median_house_value", axis=1)
 housing_labels = strat_train_set["median_house_value"].copy()
+
+housing.dropna(subset=["total_bedrooms"]) # option 1
+housing.drop("total_bedrooms", axis=1) # option 2
+median = housing["total_bedrooms"].median() # option 3
+housing["total_bedrooms"].fillna(median, inplace=True)
