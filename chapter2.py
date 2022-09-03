@@ -162,3 +162,25 @@ lin_mse = mean_squared_error(housing_labels, housing_predictions)
 lin_rmse = np.sqrt(lin_mse)
 print(lin_rmse)
 #
+
+from sklearn.tree import DecisionTreeRegressor
+tree_reg = DecisionTreeRegressor()
+tree_reg.fit(housing_prepared, housing_labels)
+
+housing_predictions = tree_reg.predict(housing_prepared)
+tree_mse = mean_squared_error(housing_labels, housing_predictions)
+tree_rmse = np.sqrt(tree_mse)
+print(tree_rmse)
+
+from sklearn.model_selection import cross_val_score
+scores = cross_val_score(tree_reg, housing_prepared, housing_labels,
+    scoring="neg_mean_squared_error", cv=10)
+tree_rmse_scores = np.sqrt(-scores)
+
+from sklearn.ensemble import RandomForestRegressor
+forest_reg = RandomForestRegressor()
+forest_reg.fit(housing_prepared, housing_labels)
+
+
+
+# Fine-Tune Your Model
